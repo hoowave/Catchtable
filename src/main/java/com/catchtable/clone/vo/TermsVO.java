@@ -1,21 +1,13 @@
 package com.catchtable.clone.vo;
 
-import lombok.AllArgsConstructor;
+import com.catchtable.clone.dto.JoinDTO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.persistence.*;
 
 @Getter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "tbl_terms")
 public class TermsVO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int tno;
     private int mno;
     private String peristalsis;
@@ -28,16 +20,34 @@ public class TermsVO {
     private String terms_6_2;
     private String terms_6_3;
 
-    public TermsVO(int mno, String peristalsis, String terms_1, String terms_2, String terms_3, String terms_4, String terms_5, String terms_6_1, String terms_6_2, String terms_6_3){
+    public TermsVO(JoinDTO joinDTO, int mno) {
         this.mno = mno;
-        this.peristalsis = peristalsis;
-        this.terms_1 = terms_1;
-        this.terms_2 = terms_2;
-        this.terms_3 = terms_3;
-        this.terms_4 = terms_4;
-        this.terms_5 = terms_5;
-        this.terms_6_1 = terms_6_1;
-        this.terms_6_2 = terms_6_2;
-        this.terms_6_3 = terms_6_3;
+        if(!termsValidate(joinDTO)){
+            throw new IllegalArgumentException("유효하지 않은 값입니다.");
+        }
+        this.peristalsis = joinDTO.getPeristalsis();
+        this.terms_1 = joinDTO.getTerms_1();
+        this.terms_2 = joinDTO.getTerms_2();
+        this.terms_3 = joinDTO.getTerms_3();
+        this.terms_4 = joinDTO.getTerms_4();
+        this.terms_5 = joinDTO.getTerms_5();
+        this.terms_6_1 = joinDTO.getTerms_6_1();
+        this.terms_6_2 = joinDTO.getTerms_6_2();
+        this.terms_6_3 = joinDTO.getTerms_6_3();
+    }
+
+    private boolean termsValidate(JoinDTO joinDTO) {
+        if (joinDTO.getPeristalsis().equals("")
+                || joinDTO.getTerms_1().equals("")
+                || joinDTO.getTerms_2().equals("")
+                || joinDTO.getTerms_3().equals("")
+                || joinDTO.getTerms_4().equals("")
+                || joinDTO.getTerms_5().equals("")
+                || joinDTO.getTerms_6_1().equals("")
+                || joinDTO.getTerms_6_2().equals("")
+                || joinDTO.getTerms_6_3().equals("")) {
+            return false;
+        }
+        return true;
     }
 }

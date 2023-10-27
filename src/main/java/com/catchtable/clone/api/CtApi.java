@@ -1,7 +1,7 @@
 package com.catchtable.clone.api;
 
 import com.catchtable.clone.service.CtService;
-import com.catchtable.clone.userdto.JoinDTO;
+import com.catchtable.clone.dto.JoinDTO;
 import com.catchtable.clone.vo.UserVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,7 @@ public class CtApi {
     public ResponseEntity<String> join(@RequestBody JoinDTO joinDTO) {
         // 정규화 시킨 두 테이블 데이터를 JoinDTO 객체로 받아옴
         if (!ctService.join(joinDTO)) {
+            // VO에서 이미 유효성 검사를 하게되는데, 여기는 필요없어진건가..??
             return new ResponseEntity<>("유효하지 않은 값입니다.", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
@@ -42,11 +43,12 @@ public class CtApi {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody JoinDTO joinDTO, HttpSession session, Model model) {
         UserVO userVO = ctService.login(joinDTO);
+        System.out.println("userVO = " + userVO);
         if (userVO == null) {
             return new ResponseEntity<>("아이디 또는 비밀번호를 확인해주세요.", HttpStatus.BAD_REQUEST);
         }
         session.setAttribute("userVO", userVO);
-        return new ResponseEntity<>(userVO.getName() + "님 안녕하세요.", HttpStatus.OK);
+        return new ResponseEntity<>("님 안녕하세요.", HttpStatus.OK);
     }
 
 }
