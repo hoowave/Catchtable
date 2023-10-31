@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>캐치테이블 클론코딩</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div class="my-5 mb-5">
+        <h1><a href="/ct/login">&#8592;</a>로그인</h1>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="loginid" id="loginid"
+               placeholder="휴대폰 번호 or 닉네임">
+      </div>
+
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" name="loginpw" id="loginpw"
+               placeholder="비밀번호">
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-danger" type="button" onclick="login();">로그인</button>
+      </div>
+
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+<footer>
+  <script src="/js/jquery-3.7.1.js"></script>
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/common.js"></script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>캐치테이블 클론코딩</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="my-5 mb-5">
+                <h1 th:text="login_logo"></h1>
+            </div>
+            <div class="my-3 text-center">
+                <h1 th:text="카카오톡"></h1>
+            </div>
+            <div class="my-3 text-center">
+                <p class="fs-6">또는</p>
+            </div>
+            <div class="my-3 mb-5">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">네이버</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">애플</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ct/join">전화번호</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="my-3 text-center">
+                <p class="fs-6">이미 가입하셨나요?</p>
+            </div>
+            <div class="my-3 text-center">
+                <a href="/ct/loginPhone" class="btn btn-outline-success">전화번호로 로그인 하기</a>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<footer class="mt-auto">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="my-3">
+                <ul class="nav nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">타임라인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">마이다이닝</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/ct/login">로그인</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+</footer>
+</body>
+</html>

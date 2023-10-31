@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>캐치테이블 클론코딩</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="my-5">
+                <h1 th:text="${userSession?.name ?: 'Guest입니다.'}"></h1>
+                <div th:if="${userSession?.name}">
+                    <a th:href="@{/ct/logout}" th:text="'로그아웃'"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<footer class="mt-auto">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="my-3">
+                <ul class="nav nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">타임라인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">마이다이닝</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ct/login">로그인</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+</footer>
+</body>
+</html>

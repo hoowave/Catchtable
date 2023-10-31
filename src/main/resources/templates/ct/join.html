@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>캐치테이블 클론코딩</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div class="my-5 mb-5">
+        <h1><a href="/ct/login">&#8592;</a>회원가입</h1>
+      </div>
+      <label for="joinname" class="form-label">이름 *</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="joinname" id="joinname"
+               placeholder="이름을 입력해주세요.">
+      </div>
+
+      <p class="fs-6 mb-3">레스토랑을 예약할 때 사용할 이름이므로 꼭 실명을 사용해 주세요.</p>
+
+      <label for="joinphone" class="form-label">휴대폰 번호 *</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="joinphone" id="joinphone"
+               placeholder="숫자만 입력해주세요.">
+        <button class="btn btn-outline-secondary" type="button">인증번호 요청</button>
+      </div>
+
+      <label for="joinpassword1" class="form-label">비밀번호 *</label>
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" name="joinpassword1" id="joinpassword1"
+               placeholder="비밀번호를 입력해 주세요.">
+      </div>
+
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" name="joinpassword2" id="joinpassword2"
+               placeholder="비밀번호를 다시 한 번 입력해 주세요.">
+      </div>
+
+      <p class="fs-6 mb-3">영문, 숫자, 특수문자 중 2종류 이상을 조합하여 8-20자리로 설정해주세요.</p>
+
+      <label for="joinnickname" class="form-label">닉네임 (선택)</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="joinnickname" id="joinnickname"
+               placeholder="닉네임을 입력해주세요.">
+      </div>
+
+      <p class="fs-6 mb-1">전화, 링크 예약 앱에 연동하기 (선택)</p>
+      <div class="form-check mb-5">
+        <input class="form-check-input" type="checkbox" name="peristalsis" id="peristalsis" value="Y">
+        <label class="form-check-label" for="peristalsis">
+          연동하기
+        </label>
+      </div>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" id="terms_all">
+        <label class="form-check-label fw-bold" for="terms_all">
+          이용자 약관 전체 동의
+        </label>
+      </div>
+      <hr>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" name="terms_1" id="terms_1" value="Y">
+        <label class="form-check-label" for="terms_1">
+          [필수] 만 14세 이상입니다.
+        </label>
+      </div>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" name="terms_2" id="terms_2" value="Y">
+        <label class="form-check-label" for="terms_2">
+          [필수] 캐치테이블 이용 약관 동의
+        </label>
+      </div>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" name="terms_3" id="terms_3" value="Y">
+        <label class="form-check-label" for="terms_3">
+          [필수] 개인정보 수집 및 이용 약관 동의
+        </label>
+      </div>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" name="terms_4" id="terms_4" value="Y">
+        <label class="form-check-label" for="terms_4">
+          [필수] 개인정보 제3자 제공 동의
+        </label>
+      </div>
+
+      <div class="form-check mb-1">
+        <input class="form-check-input" type="checkbox" name="terms_5" id="terms_5" value="Y">
+        <label class="form-check-label" for="terms_5">
+          [선택] 개인정보 제공 동의
+        </label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="terms_6">
+        <label class="form-check-label" for="terms_6">
+          [선택] 이벤트 알림 서비스 동의
+        </label>
+      </div>
+
+        <ul class="nav justify-content-center mb-5">
+          <li class="nav-item">
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" name="terms_6_1" id="terms_6_1" value="Y">
+              <label class="form-check-label" for="terms_6_1">
+                푸시 알림
+              </label>
+            </div>
+          </li>
+          <li class="nav-item mx-2">
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" name="terms_6_2" id="terms_6_2" value="Y">
+              <label class="form-check-label" for="terms_6_2">
+                SMS 수신
+              </label>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" name="terms_6_2" id="terms_6_3" value="Y">
+              <label class="form-check-label" for="terms_6_3">
+                이메일 수신
+              </label>
+            </div>
+          </li>
+        </ul>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-danger" type="button" onclick="join();">시작하기</button>
+      </div>
+
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+<footer>
+  <script src="/js/jquery-3.7.1.js"></script>
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+    $(document).ready(function (){
+
+      $('#joinnickname').change(function (){
+        nicknameCheck();
+      });
+
+    })
+  </script>
+</footer>
+</body>
+</html>
