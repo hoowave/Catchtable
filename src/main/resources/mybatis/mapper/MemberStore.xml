@@ -7,6 +7,18 @@
         INSERT INTO tbl_members (member_token, name, phone, password, nickname, created_at)
         VALUES (#{memberToken}, #{name}, #{phone}, #{password}, #{nickname}, #{createdAt});
     </insert>
+
+    <resultMap id="memberResultMap" type="com.catchtable.clone.domain.member.Member">
+        <result column="member_token" property="memberToken"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="login" parameterType="com.catchtable.clone.domain.member.Member"
+            resultType="com.catchtable.clone.domain.member.Member"
+            resultMap="memberResultMap">
+        SELECT * FROM tbl_members WHERE (phone = #{loginId} OR nickname = #{loginId}) AND password = #{loginPw}
+    </select>
     <!--
     <insert id="store" parameterType="com.catchtable.clone.vo.UserVO">
         INSERT INTO tbl_terms (mno, peristalsis, terms_1, terms_2, terms_3, terms_4, terms_5, terms_6_1, terms_6_2,
@@ -16,9 +28,6 @@
     </insert>
     <select id="nicknameCheck" parameterType="com.catchtable.clone.vo.UserVO">
         SELECT * FROM tbl_user WHERE nickname = #{nickname};
-    </select>
-    <select id="loginUser" parameterType="com.catchtable.clone.vo.UserVO">
-        SELECT * FROM tbl_user WHERE phone = #{phone} OR nickname = #{nickname} AND password = #{password}
     </select>
     -->
 </mapper>

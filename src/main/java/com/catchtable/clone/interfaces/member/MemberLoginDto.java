@@ -1,7 +1,7 @@
 package com.catchtable.clone.interfaces.member;
 
+import com.catchtable.clone.domain.member.login.MemberLoginCommand;
 import com.catchtable.clone.domain.member.Member;
-import com.catchtable.clone.domain.member.MemberCommand;
 import com.catchtable.clone.domain.member.MemberInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,34 +9,27 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 
-public class MemberDto {
-    // static inner class 사용해보자
+public class MemberLoginDto {
 
     @Getter
     @Setter
     @ToString
-    public static class RegisterRequest {
-        @NotEmpty(message = "name 은 필수값입니다.")
-        private String name;
-        @NotEmpty(message = "phone 은 필수값입니다.")
-        private String phone;
-        @NotEmpty(message = "password 은 필수값입니다.")
-        private String password;
-        private String nickname;
+    public static class LoginRequest{
+        @NotEmpty(message = "name 또는 phone 은 필수값입니다.")
+        private String loginId;
+        @NotEmpty(message = "password 는 필수값입니다.")
+        private String loginPw;
 
-        public MemberCommand toCommand() {
-            return MemberCommand.builder()
-                    .name(name)
-                    .phone(phone)
-                    .password(password)
-                    .nickname(nickname)
+        public MemberLoginCommand toCommand(){
+            return MemberLoginCommand.builder()
+                    .loginId(loginId)
+                    .loginPw(loginPw)
                     .build();
         }
     }
-
     @Getter
     @ToString
-    public static class RegisterResponse {
+    public static class LoginResponse {
         private final String memberToken;
         private final String name;
         private final String phone;
@@ -44,7 +37,7 @@ public class MemberDto {
         private final String nickname;
         private final Member.Status status;
 
-        public RegisterResponse(MemberInfo memberInfo) {
+        public LoginResponse(MemberInfo memberInfo) {
             this.memberToken = memberInfo.getMemberToken();
             this.name = memberInfo.getName();
             this.phone = memberInfo.getPhone();
@@ -52,5 +45,7 @@ public class MemberDto {
             this.nickname = memberInfo.getNickname();
             this.status = memberInfo.getStatus();
         }
+
     }
+
 }

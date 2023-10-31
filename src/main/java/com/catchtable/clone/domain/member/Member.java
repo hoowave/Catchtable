@@ -1,10 +1,7 @@
 package com.catchtable.clone.domain.member;
 
 import com.catchtable.clone.common.util.TokenGenerator;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.thymeleaf.util.StringUtils;
 
@@ -15,8 +12,10 @@ import java.time.LocalDateTime;
 @Slf4j
 @Getter
 @NoArgsConstructor
+@ToString
 public class Member {
     private static final String PREFIX_MEMBER = "mb_";
+
     private Long id;
     private String memberToken;
     private String name;
@@ -27,6 +26,9 @@ public class Member {
     private Status status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    private String loginId;
+    private String loginPw;
 
 
     @Getter
@@ -42,6 +44,7 @@ public class Member {
         if (StringUtils.isEmpty(phone)) System.out.println("empty Phone");
         if (StringUtils.isEmpty(password)) System.out.println("empty Password");
 
+
         this.memberToken = TokenGenerator.randomCharacterWithPrefix(PREFIX_MEMBER);
         this.name = name;
         this.phone = phone;
@@ -49,6 +52,14 @@ public class Member {
         this.nickname = nickname;
         this.status = Status.ENABLE;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public Member(String loginId, String loginPw){
+        if (StringUtils.isEmpty(loginId)) System.out.println("empty loginId");
+        if (StringUtils.isEmpty(loginPw)) System.out.println("empty loginPw");
+
+        this.loginId = loginId;
+        this.loginPw = loginPw;
     }
 
     public void enable() {
