@@ -1,4 +1,5 @@
 package com.catchtable.clone.domain.member.register;
+
 import com.catchtable.clone.domain.member.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +14,7 @@ public class MemberRegisterCommand {
     private final String password;
     private final String nickname;
 
-    public Member toEntity(){
+    public Member toEntity() {
         return Member.builder()
                 .name(name)
                 .phone(phone)

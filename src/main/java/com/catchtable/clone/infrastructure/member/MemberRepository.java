@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.Optional;
 
 @Mapper
-public interface MemberStore {
+public interface MemberRepository {
     Long store(Member initMember);
     Optional<Member> login(Member initMember);
 }

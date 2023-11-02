@@ -5,6 +5,7 @@ import com.catchtable.clone.domain.member.login.MemberLoginCommand;
 import com.catchtable.clone.domain.member.register.MemberRegisterCommand;
 import com.catchtable.clone.domain.member.MemberInfo;
 import com.catchtable.clone.domain.member.MemberService;
+import com.catchtable.clone.domain.member.register.TermsRegisterCommand;
 import com.catchtable.clone.domain.notify.NotifyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,9 @@ public class MemberFacade {
     private final MemberService memberService;
     private final NotifyService notifyService;
 
-    public MemberInfo registerMember(MemberRegisterCommand memberRegisterCommand){
-        var memberInfo = memberService.registerMember(memberRegisterCommand);
+    public MemberInfo registerMember(MemberRegisterCommand memberRegisterCommand,
+                                     TermsRegisterCommand termsRegisterCommand) {
+        var memberInfo = memberService.registerMember(memberRegisterCommand, termsRegisterCommand);
         notifyService.sendSms(memberInfo.getPhone(), "회원가입성공");
         return memberInfo;
     }

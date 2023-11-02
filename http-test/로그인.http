@@ -3,6 +3,6 @@ POST http://localhost:8080/api/v1/members/login
 Content-Type: application/json
 
 {
-  "loginId": "nntest",
-  "loginPw": "pwtest"
+  "loginId": "1234567890",
+  "loginPw": "passwordtest1!"
 }

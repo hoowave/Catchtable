@@ -36,6 +36,7 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
 	implementation 'org.apache.commons:commons-lang3:3.9'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'com.google.guava:guava:28.2-jre'
 }
 
 tasks.named('test') {

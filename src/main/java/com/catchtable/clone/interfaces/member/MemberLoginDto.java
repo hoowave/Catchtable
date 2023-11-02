@@ -30,10 +30,10 @@ public class MemberLoginDto {
     @Getter
     @ToString
     public static class LoginResponse {
+        //비밀번호는 보안상 제공하지 않는것이 좋다는 정보를 얻음
         private final String memberToken;
         private final String name;
         private final String phone;
-        private final String password;
         private final String nickname;
         private final Member.Status status;
 
@@ -41,7 +41,6 @@ public class MemberLoginDto {
             this.memberToken = memberInfo.getMemberToken();
             this.name = memberInfo.getName();
             this.phone = memberInfo.getPhone();
-            this.password = memberInfo.getPassword();
             this.nickname = memberInfo.getNickname();
             this.status = memberInfo.getStatus();
         }
