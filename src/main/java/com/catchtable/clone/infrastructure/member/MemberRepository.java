@@ -7,6 +7,6 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberRepository {
-    Long store(Member initMember);
+    Long memberStore(Member initMember);
     Optional<Member> login(Member initMember);
 }

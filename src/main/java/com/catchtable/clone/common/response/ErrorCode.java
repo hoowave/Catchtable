@@ -13,7 +13,13 @@ public enum ErrorCode {
 
     // MEMBER
     MEMBER_NOT_FOUND("아이디 또는 비밀번호를 확인해주세요."),
-    MEMBER_NEED_LOGIN("로그인이 필요합니다.");
+    MEMBER_NEED_LOGIN("로그인이 필요합니다."),
+    MEMBER_LOGOUT("로그아웃 되었습니다."),
+
+    // SHOP
+    SHOP_NOT_FOUND("아이디 또는 비밀번호를 확인해주세요."),
+    SHOP_NEED_LOGIN("로그인이 필요합니다."),
+    SHOP_LOGOUT("로그아웃 되었습니다.");
 
     private final String errorMsg;
 

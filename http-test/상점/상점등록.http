@@ -1,0 +1,17 @@
+### 상점등록(상점정보, 상세정보)
+POST http://localhost:8080/api/v1/shop/register
+Content-Type: application/json
+
+{
+  "shopId": "testshop1",
+  "shopPw": "passwordtest1!",
+  "category": "SUSHI",
+  "shopName": "스시맛집",
+  "shopIntroduction": "가게소개 - 스시맛집입니다",
+  "phone": "051-217-1915",
+  "infoIntroduction": "매장소개 - 청결해요",
+  "opening": "09:00 ~ 22:00",
+  "holiday": "연중무휴",
+  "instruction": "안내 및 유의사항 - 주차가능",
+  "homepage": "www.naver.com"
+}

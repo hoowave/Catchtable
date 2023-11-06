@@ -54,7 +54,7 @@ public class MemberApiController {
     public CommonResponse logoutMember(HttpSession session) {
         if (session.getAttribute("member") != null) {
             session.invalidate();
-            return CommonResponse.success(null);
+            return CommonResponse.success(ErrorCode.MEMBER_LOGOUT);
         } else {
             return CommonResponse.fail(ErrorCode.MEMBER_NEED_LOGIN);
         }

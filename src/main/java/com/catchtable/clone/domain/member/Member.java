@@ -3,7 +3,6 @@ package com.catchtable.clone.domain.member;
 import com.catchtable.clone.common.util.TokenGenerator;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

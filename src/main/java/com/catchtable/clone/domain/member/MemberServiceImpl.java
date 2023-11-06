@@ -24,9 +24,9 @@ public class MemberServiceImpl implements MemberService {
     public MemberInfo registerMember(MemberRegisterCommand memberRegisterCommand,
                                      TermsRegisterCommand termsRegisterCommand) {
         var initMember = memberRegisterCommand.toEntity();
-        memberRepository.store(initMember);
+        memberRepository.memberStore(initMember);
         var initTerms = termsRegisterCommand.toEntity(initMember.getMemberToken());
-        termsRepository.store(initTerms);
+        termsRepository.termsStore(initTerms);
         // 회원 객체와 약관 객체를 각 각 저장
         return new MemberInfo(initMember);
     }

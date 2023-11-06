@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface TermsRepository {
-    Long store(Terms initTerms);
+    Long termsStore(Terms initTerms);
 }
