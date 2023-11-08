@@ -30,6 +30,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
+    @Transactional
     public ShopInfo loginShop(ShopLoginCommand shopLoginCommand) {
         var initShop = shopLoginCommand.toEntity();
         Optional<Shop> shop = shopRepository.login(initShop);

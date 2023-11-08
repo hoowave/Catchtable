@@ -1,0 +1,43 @@
+### 예약메뉴등록
+
+### 오전~런치 예약메뉴
+POST http://localhost:8080/api/v1/shop/reserve/menu/register
+Content-Type: application/json
+
+{
+  "type": "MAIN",
+  "startAt": "10:00",
+  "lastAt": "16:00",
+  "reserveMenu": "런치예약메뉴",
+  "reserveMenuIntro": "런치예약메뉴입니다",
+  "reserveMenuPrice": "20000"
+}
+
+### 런치~디너 예약메뉴
+
+POST http://localhost:8080/api/v1/shop/reserve/menu/register
+Content-Type: application/json
+
+{
+"type": "MAIN",
+"startAt": "16:00",
+"lastAt": "22:00",
+"reserveMenu": "디너예약메뉴",
+"reserveMenuIntro": "디너예약메뉴입니다",
+"reserveMenuPrice": "65000"
+}
+
+### 예약메뉴 따로 없음, 예약금
+
+POST http://localhost:8080/api/v1/shop/reserve/menu/register
+Content-Type: application/json
+
+{
+  "type": "MAIN",
+  "startAt": "10:00",
+  "lastAt": "22:00",
+  "reserveMenu": "예약금",
+  "reserveMenuIntro": "예약금입니다",
+  "reserveMenuPrice": "10000"
+}
+
