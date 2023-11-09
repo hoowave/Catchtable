@@ -3,6 +3,8 @@ package com.catchtable.clone.domain.member;
 import com.catchtable.clone.domain.member.login.MemberLoginCommand;
 import com.catchtable.clone.domain.member.register.MemberRegisterCommand;
 import com.catchtable.clone.domain.member.register.TermsRegisterCommand;
+import com.catchtable.clone.domain.member.reserve.ReserveCommand;
+import com.catchtable.clone.domain.member.reserve.ReserveInfo;
 import com.catchtable.clone.infrastructure.member.MemberRepository;
 import com.catchtable.clone.infrastructure.terms.TermsRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,23 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final TermsRepository termsRepository;
+
+    @Override
+    @Transactional
+    public ReserveInfo reserve(ReserveCommand reserveCommand) {
+        Optional<String> shopToken = memberRepository.getShopIdToShopToken(reserveCommand.getShopId());
+        if (shopToken.isEmpty()) {
+            // 가게ID의 토큰이 존재하지 않을 경우
+            return new ReserveInfo(-1);
+        }
+        System.out.println(reserveCommand);
+        int shopPersonnel = memberRepository.getTotalPersonnel(reserveCommand.getReserveAt(),shopToken.get());
+        System.out.println("shopPersonnel = " + shopPersonnel);
+        //예약자리 체크하는 쿼리짜서 구현하기
+        //var initReserve = reserveCommand.toEntity(shopToken.get());
+        //memberRepository.reserveStore(initReserve);
+        return new ReserveInfo(-2);
+    }
 
     @Override
     @Transactional

@@ -8,7 +8,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.Size;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -39,8 +38,8 @@ public class ReserveMenuRegisterDto {
                     .reserveMenu(reserveMenu)
                     .reserveMenuIntro(reserveMenuIntro)
                     .reserveMenuPrice(reserveMenuPrice)
-                    .startAt(Time.valueOf(sTime))
-                    .lastAt(Time.valueOf(lTime))
+                    .startAt(sTime)
+                    .lastAt(lTime)
                     .build();
         }
 
@@ -53,8 +52,8 @@ public class ReserveMenuRegisterDto {
         private final String reserveMenu;
         private final String reserveMenuIntro;
         private final int reserveMenuPrice;
-        private final Time startAt;
-        private final Time lastAt;
+        private final LocalTime startAt;
+        private final LocalTime lastAt;
 
         public response(ReserveMenuInfo reserveMenuInfo) {
             this.type = reserveMenuInfo.getType();

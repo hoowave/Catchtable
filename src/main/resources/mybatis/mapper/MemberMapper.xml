@@ -19,4 +19,21 @@
             resultMap="memberResultMap">
         SELECT * FROM tbl_members WHERE (phone = #{loginId} OR nickname = #{loginId}) AND password = #{loginPw}
     </select>
+
+    <select id="getShopIdToShopToken" resultType="String">
+        SELECT shop_token FROM tbl_shop WHERE shop_id = #{loginId}
+    </select>
+
+    <insert id="reserveStore" parameterType="com.catchtable.clone.domain.member.reserve.Reserve"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_reserve (member_token, shop_token, reserve_at, personnel, reserve_menu, visit, message)
+        VALUES (#{memberToken}, #{shopToken}, #{reserveAt}, #{personnel}, #{reserveMenu}, #{visit}, #{message});
+    </insert>
+
+    <select id="getTotalPersonnel" resultType="Integer">
+        SELECT sum(personnel) FROM tbl_reserve WHERE shop_token = #{shopToken} AND reserve_at = #{reserveAt} GROUP BY reserve_at
+    </select>
+
+
+
 </mapper>

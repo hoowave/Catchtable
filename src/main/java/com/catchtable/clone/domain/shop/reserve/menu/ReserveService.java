@@ -4,7 +4,8 @@ import com.catchtable.clone.domain.shop.reserve.menu.register.ReserveMenuRegiste
 import com.catchtable.clone.domain.shop.reserve.personnel.ReservePersonnelInfo;
 import com.catchtable.clone.domain.shop.reserve.personnel.register.ReservePersonnelRegisterCommand;
 
-public interface ReserveMenuService {
+public interface ReserveService {
+
     ReserveMenuInfo menuRegister(ReserveMenuRegisterCommand reserveMenuRegisterCommand);
 
     ReservePersonnelInfo personnelRegister(ReservePersonnelRegisterCommand reservePersonnelRegisterCommand);

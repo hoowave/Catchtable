@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Builder
@@ -16,8 +18,8 @@ public class ReserveMenuRegisterCommand {
     private final String reserveMenu;
     private final String reserveMenuIntro;
     private final int reserveMenuPrice;
-    private final Time startAt;
-    private final Time lastAt;
+    private final LocalTime startAt;
+    private final LocalTime lastAt;
 
     public ReserveMenu toEntity() {
         return ReserveMenu.builder()

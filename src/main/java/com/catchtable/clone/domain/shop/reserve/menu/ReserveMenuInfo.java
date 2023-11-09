@@ -2,7 +2,8 @@ package com.catchtable.clone.domain.shop.reserve.menu;
 
 import lombok.Getter;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 public class ReserveMenuInfo {
@@ -12,8 +13,8 @@ public class ReserveMenuInfo {
     private final String reserveMenu;
     private final String reserveMenuIntro;
     private final int reserveMenuPrice;
-    private final Time startAt;
-    private final Time lastAt;
+    private final LocalTime startAt;
+    private final LocalTime lastAt;
 
     public ReserveMenuInfo(ReserveMenu reserveMenu) {
         this.id = reserveMenu.getId();

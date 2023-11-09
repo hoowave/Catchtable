@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ReserveMenuServiceImpl implements ReserveMenuService {
+public class ReserveServiceImpl implements ReserveService {
     private final ReserveRepository reserveRepository;
 
     @Override

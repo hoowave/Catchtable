@@ -29,20 +29,19 @@ public class ReserveApiController {
                                               @RequestBody @Valid ReserveMenuRegisterDto.request request) {
         var shopInfo = (ShopLoginDto.LoginResponse) session.getAttribute("shop");
         if (shopInfo != null) {
-            var reserveMenuCommand = request.toCommand(shopInfo.getShopToken());
-            var reserveMenuInfo = reserveFacade.registerReserveMenu(reserveMenuCommand);
-            var response = new ReserveMenuRegisterDto.response(reserveMenuInfo);
-            return CommonResponse.success(response);
-        } else {
             return CommonResponse.fail(ErrorCode.SHOP_NEED_LOGIN);
         }
+        var reserveMenuCommand = request.toCommand(shopInfo.getShopToken());
+        var reserveMenuInfo = reserveFacade.registerReserveMenu(reserveMenuCommand);
+        var response = new ReserveMenuRegisterDto.response(reserveMenuInfo);
+        return CommonResponse.success(response);
     }
 
     @PostMapping("/personnel/register")
     public CommonResponse registerReservePersonnel(HttpSession session,
                                                    @RequestBody @Valid ReservePersonnelRegisterDto.request request) {
         var shopInfo = (ShopLoginDto.LoginResponse) session.getAttribute("shop");
-        if (shopInfo != null) {
+        if (shopInfo == null) {
             var reservePersonnelCommand = request.toCommand(shopInfo.getShopToken());
             var reservePersonnelInfo = reserveFacade.registerReservePersonnel(reservePersonnelCommand);
             var response = new ReservePersonnelRegisterDto.response(reservePersonnelInfo);

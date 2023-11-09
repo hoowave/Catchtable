@@ -33,7 +33,7 @@ POST http://localhost:8080/api/v1/shop/reserve/menu/register
 Content-Type: application/json
 
 {
-  "type": "MAIN",
+  "type": "SINGLE",
   "startAt": "10:00",
   "lastAt": "22:00",
   "reserveMenu": "예약금",

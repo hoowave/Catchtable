@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Slf4j
 @Getter
@@ -22,8 +23,8 @@ public class ReserveMenu {
     @Size(max = 300, message = "메뉴이름은 최대 300자로 입력해주세요.")
     private String reserveMenuIntro;
     private int reserveMenuPrice;
-    private Time startAt;
-    private Time lastAt;
+    private LocalTime startAt;
+    private LocalTime lastAt;
 
 
     @Getter
@@ -34,7 +35,8 @@ public class ReserveMenu {
     }
 
     @Builder
-    public ReserveMenu(String shopToken, Type type, String reserveMenu, String reserveMenuIntro, int reserveMenuPrice, Time startAt, Time lastAt) {
+    public ReserveMenu(String shopToken, Type type, String reserveMenu, String reserveMenuIntro,
+                       int reserveMenuPrice, LocalTime startAt, LocalTime lastAt) {
         this.shopToken = shopToken;
         this.type = type;
         this.reserveMenu = reserveMenu;
