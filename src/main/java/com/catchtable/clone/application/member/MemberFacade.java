@@ -19,6 +19,11 @@ public class MemberFacade {
     private final MemberService memberService;
     private final NotifyService notifyService;
 
+    public ReserveInfo reserveInfo(String memberToken) {
+        var reserveInfo = memberService.reserveInfo(memberToken);
+        return reserveInfo;
+    }
+
     public ReserveInfo reserve(ReserveCommand reserveCommand) {
         var reserveInfo = memberService.reserve(reserveCommand);
         return reserveInfo;

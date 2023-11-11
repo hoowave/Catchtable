@@ -17,6 +17,16 @@ import javax.validation.Valid;
 public class MemberApiController {
     private final MemberFacade memberFacade;
 
+    @PostMapping("/reserveInfo")
+    public CommonResponse reserveInfo(HttpSession session) {
+        var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("member");
+        if (memberInfo == null) {
+            return CommonResponse.fail(ErrorCode.MEMBER_NEED_LOGIN);
+        }
+        memberFacade.reserveInfo(memberInfo.getMemberToken());
+        return CommonResponse.success("");
+    }
+
     @PostMapping("/reserve")
     public CommonResponse reserve(HttpSession session,
                                   @RequestBody @Valid ReserveDto.request request) {
@@ -26,9 +36,11 @@ public class MemberApiController {
         }
         var reserveCommand = request.toCommand(memberInfo.getMemberToken());
         var reserveInfo = memberFacade.reserve(reserveCommand);
-        switch (reserveInfo.getErrorCode()){
+        switch (reserveInfo.getErrorCode()) {
             case -1:
                 return CommonResponse.fail(ErrorCode.SHOP_TOKEN_NOT_FOUND);
+            case -2:
+                return CommonResponse.fail(ErrorCode.RESERVE_NOT_AVAILABLE_PERSONNEL);
             default:
                 var response = new ReserveDto.response(reserveInfo);
                 return CommonResponse.success(response);

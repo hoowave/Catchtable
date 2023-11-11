@@ -17,6 +17,6 @@ public interface MemberRepository {
 
     Long reserveStore(Reserve initReserve);
 
-    int getTotalPersonnel(LocalDateTime reserveAt, String shopToken);
+    int getAvailablePersonnel(LocalDateTime reserveAt, String shopToken);
 
 }

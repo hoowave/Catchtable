@@ -30,8 +30,8 @@
         VALUES (#{memberToken}, #{shopToken}, #{reserveAt}, #{personnel}, #{reserveMenu}, #{visit}, #{message});
     </insert>
 
-    <select id="getTotalPersonnel" resultType="Integer">
-        SELECT sum(personnel) FROM tbl_reserve WHERE shop_token = #{shopToken} AND reserve_at = #{reserveAt} GROUP BY reserve_at
+    <select id="getAvailablePersonnel" resultType="Integer">
+        SELECT a.personnel-IFNULL((SELECT SUM(b.personnel) FROM tbl_reserve b WHERE b.shop_token = #{shopToken} AND b.reserve_at = #{reserveAt}),0) as result FROM tbl_shop_reserve_personnel a WHERE a.shop_token = #{shopToken} AND a.reserve_at = DATE_FORMAT(#{reserveAt}, '%H:%i')
     </select>
 
 

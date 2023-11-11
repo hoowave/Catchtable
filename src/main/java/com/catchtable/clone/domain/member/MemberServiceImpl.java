@@ -22,6 +22,12 @@ public class MemberServiceImpl implements MemberService {
     private final TermsRepository termsRepository;
 
     @Override
+    public ReserveInfo reserveInfo(String memberToken) {
+        System.out.println("memberToken = " + memberToken);
+        return null;
+    }
+
+    @Override
     @Transactional
     public ReserveInfo reserve(ReserveCommand reserveCommand) {
         Optional<String> shopToken = memberRepository.getShopIdToShopToken(reserveCommand.getShopId());
@@ -29,13 +35,14 @@ public class MemberServiceImpl implements MemberService {
             // 가게ID의 토큰이 존재하지 않을 경우
             return new ReserveInfo(-1);
         }
-        System.out.println(reserveCommand);
-        int shopPersonnel = memberRepository.getTotalPersonnel(reserveCommand.getReserveAt(),shopToken.get());
-        System.out.println("shopPersonnel = " + shopPersonnel);
-        //예약자리 체크하는 쿼리짜서 구현하기
-        //var initReserve = reserveCommand.toEntity(shopToken.get());
-        //memberRepository.reserveStore(initReserve);
-        return new ReserveInfo(-2);
+        int availablePersonnel = memberRepository.getAvailablePersonnel(reserveCommand.getReserveAt(),shopToken.get());
+        if(availablePersonnel < reserveCommand.getPersonnel()){
+            // 가게 기준 현재 예약 인원보다 예약하려는 인원이 많은지 체크
+            return new ReserveInfo(-2);
+        }
+        var initReserve = reserveCommand.toEntity(shopToken.get());
+        memberRepository.reserveStore(initReserve);
+        return new ReserveInfo(initReserve);
     }
 
     @Override

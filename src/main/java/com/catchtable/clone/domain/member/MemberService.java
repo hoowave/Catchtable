@@ -8,6 +8,8 @@ import com.catchtable.clone.domain.member.reserve.ReserveInfo;
 
 public interface MemberService {
 
+    ReserveInfo reserveInfo(String memberToken);
+
     ReserveInfo reserve(ReserveCommand reserveCommand);
 
     MemberInfo registerMember(MemberRegisterCommand memberRegisterCommand,
