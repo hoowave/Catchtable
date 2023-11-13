@@ -1,5 +1,6 @@
 package com.catchtable.clone.application.member;
 
+import com.catchtable.clone.domain.member.MemberReserveInfo;
 import com.catchtable.clone.domain.member.login.MemberLoginCommand;
 import com.catchtable.clone.domain.member.register.MemberRegisterCommand;
 import com.catchtable.clone.domain.member.MemberInfo;
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -19,9 +22,9 @@ public class MemberFacade {
     private final MemberService memberService;
     private final NotifyService notifyService;
 
-    public ReserveInfo reserveInfo(String memberToken) {
-        var reserveInfo = memberService.reserveInfo(memberToken);
-        return reserveInfo;
+    public List<MemberReserveInfo> reserveInfo(String memberToken) {
+        var reserveInfoList = memberService.reserveInfoList(memberToken);
+        return reserveInfoList;
     }
 
     public ReserveInfo reserve(ReserveCommand reserveCommand) {

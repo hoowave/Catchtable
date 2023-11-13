@@ -23,8 +23,9 @@ public class MemberApiController {
         if (memberInfo == null) {
             return CommonResponse.fail(ErrorCode.MEMBER_NEED_LOGIN);
         }
-        memberFacade.reserveInfo(memberInfo.getMemberToken());
-        return CommonResponse.success("");
+        var reserveInfoList = memberFacade.reserveInfo(memberInfo.getMemberToken());
+        var response = new ReserveInfoListDto.response(reserveInfoList);
+        return CommonResponse.success(response);
     }
 
     @PostMapping("/reserve")

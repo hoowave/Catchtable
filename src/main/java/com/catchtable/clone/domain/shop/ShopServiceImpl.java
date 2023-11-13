@@ -1,5 +1,6 @@
 package com.catchtable.clone.domain.shop;
 
+import com.catchtable.clone.common.exception.InvalidParamException;
 import com.catchtable.clone.domain.shop.login.ShopLoginCommand;
 import com.catchtable.clone.domain.shop.register.ShopInformationRegisterCommand;
 import com.catchtable.clone.domain.shop.register.ShopRegisterCommand;

@@ -6,9 +6,11 @@ import com.catchtable.clone.domain.member.register.TermsRegisterCommand;
 import com.catchtable.clone.domain.member.reserve.ReserveCommand;
 import com.catchtable.clone.domain.member.reserve.ReserveInfo;
 
+import java.util.List;
+
 public interface MemberService {
 
-    ReserveInfo reserveInfo(String memberToken);
+    List<MemberReserveInfo> reserveInfoList(String memberToken);
 
     ReserveInfo reserve(ReserveCommand reserveCommand);
 
