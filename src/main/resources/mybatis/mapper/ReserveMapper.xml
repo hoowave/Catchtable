@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.catchtable.clone.infrastructure.shop.reserve.ReserveRepository">
+    <insert id="reserveMenuStore" parameterType="com.catchtable.clone.domain.shop.reserve.menu.ReserveMenu"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_shop_reserve_menu (shop_token, type, menu_name, menu_intro, menu_price, start_at, last_at)
+        VALUES (#{shopToken}, #{type}, #{reserveMenu}, #{reserveMenuIntro}, #{reserveMenuPrice}, #{startAt}, #{lastAt});
+    </insert>
+
+    <insert id="reservePersonnelStore"
+            parameterType="com.catchtable.clone.domain.shop.reserve.personnel.ReservePersonnel"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tbl_shop_reserve_personnel (shop_token, reserve_at, personnel)
+        VALUES (#{shopToken}, #{reserveAt}, #{personnel});
+    </insert>
+</mapper>

@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class NotifyExecutor implements NotifyService {
     @Override
     public void sendSms(String phone, String content) {
-        System.out.println("SMS 전송");
+        System.out.println(phone + " 으로 " + content + " SMS 전송");
     }
 }

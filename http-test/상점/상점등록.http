@@ -1,0 +1,40 @@
+### 상점등록(상점정보, 상세정보)
+
+
+### 테스트상점1
+
+POST http://localhost:8080/api/v1/shop/register
+Content-Type: application/json
+
+{
+  "shopId": "testshop1",
+  "shopPw": "passwordtest1!",
+  "category": "JAPANESE",
+  "shopName": "데판킹",
+  "shopIntroduction": "철판 앞에서 불쇼도 하고 직접 요리하는걸 보고 음식을 즐기는 데판야끼",
+  "phone": "051-808-9856",
+  "infoIntroduction": "2016년에 장유 율하 카페거리에서 오픈한 ~~~",
+  "opening": "월요일, 수요일 ~ 일요일 11:30 ~ 21:30",
+  "holiday": "매주 화요일",
+  "instruction": "안내 및 유의사항 - 주차가능",
+  "homepage": "www.naver.com"
+}
+
+### 테스트상점2
+
+POST http://localhost:8080/api/v1/shop/register
+Content-Type: application/json
+
+{
+  "shopId": "testshop2",
+  "shopPw": "passwordtest2!",
+  "category": "PASTA",
+  "shopName": "프맄",
+  "shopIntroduction": "독창적이고 개성 있는 요리를 즐기는 양식당",
+  "phone": "051-808-6863",
+  "infoIntroduction": "",
+  "opening": "12:00 ~ 22:00",
+  "holiday": "매주 월요일 휴무",
+  "instruction": "전용 주차장이 마련되어 있지 않아 인근 유료 주차장 이용부탁드립니다.",
+  "homepage": "www.naver.com"
+}

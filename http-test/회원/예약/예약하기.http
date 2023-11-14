@@ -1,0 +1,13 @@
+### 예약하기
+
+### 오전~런치 메뉴 예약하기
+POST http://localhost:8080/api/v1/members/reserve
+Content-Type: application/json
+
+{
+  "shopId": "testshop1",
+  "reserveAt": "2023-11-09 12:00",
+  "personnel": "2",
+  "reserveMenu": "1",
+  "message": "예약요청사항입니다."
+}

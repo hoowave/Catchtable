@@ -1,0 +1,91 @@
+### 1시간 간격으로 예약시간,인원등록
+
+### 11:00 4명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "11:00",
+  "personnel": "4"
+}
+
+### 12:00 6명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "12:00",
+  "personnel": "6"
+}
+
+### 13:00 8명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "13:00",
+  "personnel": "8"
+}
+
+### 14:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "14:00",
+  "personnel": "10"
+}
+
+### 15:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "15:00",
+  "personnel": "10"
+}
+
+### 16:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "16:00",
+  "personnel": "10"
+}
+
+### 17:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "17:00",
+  "personnel": "10"
+}
+
+### 18:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "18:00",
+  "personnel": "10"
+}
+
+### 19:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "19:00",
+  "personnel": "10"
+}
+
+### 20:00 10명
+POST http://localhost:8080/api/v1/shop/reserve/personnel/register
+Content-Type: application/json
+
+{
+  "reserveAt": "20:00",
+  "personnel": "10"
+}
