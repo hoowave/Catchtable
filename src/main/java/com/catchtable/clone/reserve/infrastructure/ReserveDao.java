@@ -6,12 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
 public interface ReserveDao {
     Long reserveStore(Reserve initReserve);
 
+    int getAvailableReserve(String shopToken, String memberToken, LocalDateTime reserveAt);
     int getAvailablePersonnel(LocalDateTime reserveAt, String shopToken);
 
     List<MemberReserveInfo> reserveInfoList(String memberToken);

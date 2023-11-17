@@ -11,11 +11,11 @@ public class ReserveInfoListDto {
     @Getter
     @ToString
     public static class response {
-        LinkedHashMap<Integer, MemberReserveInfo> map = new LinkedHashMap<>();
+        LinkedHashMap<Integer, MemberReserveInfo> reserveInfo = new LinkedHashMap<>();
 
         public response(List<MemberReserveInfo> memberReserveInfoList) {
             for (int i = 0; i < memberReserveInfoList.size(); i++) {
-                map.put(i, memberReserveInfoList.get(i));
+                reserveInfo.put(i, memberReserveInfoList.get(i));
             }
 
         }

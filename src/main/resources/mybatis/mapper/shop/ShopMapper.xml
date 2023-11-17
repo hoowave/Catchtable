@@ -4,12 +4,12 @@
 <mapper namespace="com.catchtable.clone.shop.infrastructure.ShopDao">
     <insert id="shopStore" parameterType="com.catchtable.clone.shop.domain.Shop"
             useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_shop (shop_token, shop_id, shop_pw, category, name, introduction, created_at)
+        INSERT INTO shop (shop_token, shop_id, shop_pw, category, name, introduction, created_at)
         VALUES (#{shopToken}, #{shopId}, #{shopPw}, #{category}, #{shopName}, #{shopIntroduction}, #{createdAt});
     </insert>
     <insert id="shopInformationStore" parameterType="com.catchtable.clone.shop.domain.info.ShopInformation"
             useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_shop_information (shop_token, phone, info_introduction, opening, holiday, instruction, homepage)
+        INSERT INTO shop_information (shop_token, phone, info_introduction, opening, holiday, instruction, homepage)
         VALUES (#{shopToken}, #{phone}, #{infoIntroduction}, #{opening}, #{holiday}, #{instruction}, #{homepage});
     </insert>
 
@@ -25,10 +25,10 @@
     <select id="login" parameterType="com.catchtable.clone.shop.domain.Shop"
             resultType="com.catchtable.clone.shop.domain.Shop"
             resultMap="shopResultMap">
-        SELECT * FROM tbl_shop WHERE shop_id = #{shopId} AND shop_pw = #{shopPw}
+        SELECT * FROM shop WHERE shop_id = #{shopId} AND shop_pw = #{shopPw}
     </select>
 
     <select id="ShopIdToShopToken" resultType="String">
-        SELECT shop_token FROM tbl_shop WHERE shop_id = #{loginId}
+        SELECT shop_token FROM shop WHERE shop_id = #{loginId}
     </select>
 </mapper>

@@ -5,8 +5,8 @@ POST http://localhost:8080/api/v1/members/login
 Content-Type: application/json
 
 {
-  "loginId": "1234567890",
-  "loginPw": "passwordtest1!"
+  "loginId": "0987654321",
+  "loginPw": "passwordtest2!"
 }
 
 ### 테스트계정2
@@ -14,6 +14,6 @@ POST http://localhost:8080/api/v1/members/login
 Content-Type: application/json
 
 {
-  "loginId": "0987654321",
-  "loginPw": "passwordtest2!"
+  "loginId": "1234567890",
+  "loginPw": "passwordtest3!"
 }

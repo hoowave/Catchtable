@@ -23,7 +23,8 @@ public enum ErrorCode {
     SHOP_TOKEN_NOT_FOUND("상점 아이디를 확인 해주세요."),
 
     // RESERVE
-    RESERVE_NOT_AVAILABLE_PERSONNEL("예약 가능한 자리가 부족합니다.");
+    RESERVE_NOT_AVAILABLE_PERSONNEL("예약 가능한 자리가 부족합니다."),
+    RESERVE_NOT_AVAILABLE_RESERVE("이미 예약되어 있습니다.");
 
     private final String errorMsg;
 

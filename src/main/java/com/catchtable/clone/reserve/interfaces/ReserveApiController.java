@@ -27,8 +27,18 @@ public class ReserveApiController {
     private final ShopFacade shopFacade;
     private final ReserveFacade reserveFacade;
 
-    @PostMapping("/info")
-    public CommonResponse reserveInfo(HttpSession session) {
+    @PostMapping("/shopReserveInfo")
+    public CommonResponse shopReserveInfo(HttpSession session) {
+        shopFacade.loginCheck(session);
+        var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("shop");
+        var reserveInfoList = reserveFacade.reserveInfo(memberInfo.getMemberToken());
+        var response = new ReserveInfoListDto.response(reserveInfoList);
+        return CommonResponse.success(response);
+    }
+
+
+    @PostMapping("/memberReserveInfo")
+    public CommonResponse memberReserveInfo(HttpSession session) {
         memberFacade.loginCheck(session);
         var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("member");
         var reserveInfoList = reserveFacade.reserveInfo(memberInfo.getMemberToken());
@@ -37,7 +47,7 @@ public class ReserveApiController {
     }
 
     @PostMapping("/reserve")
-    public void reserve(HttpSession session,
+    public CommonResponse reserve(HttpSession session,
                                   @RequestBody @Valid ReserveDto.request request) {
         memberFacade.loginCheck(session);
         var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("member");
@@ -45,14 +55,7 @@ public class ReserveApiController {
         String shopToken = shopFacade.ShopIdToShopToken(request.getShopId());
         var reserveCommand = request.toCommand(memberToken, shopToken);
         var reserveInfo = reserveFacade.reserve(reserveCommand);
-//        switch (reserveInfo.getErrorCode()) {
-//            case -1:
-//                return CommonResponse.fail(ErrorCode.SHOP_TOKEN_NOT_FOUND);
-//            case -2:
-//                return CommonResponse.fail(ErrorCode.RESERVE_NOT_AVAILABLE_PERSONNEL);
-//            default:
-//                var response = new ReserveDto.response(reserveInfo);
-//                return CommonResponse.success(response);
-//        }
+        var response = new ReserveDto.response(reserveInfo);
+        return CommonResponse.success(response);
     }
 }

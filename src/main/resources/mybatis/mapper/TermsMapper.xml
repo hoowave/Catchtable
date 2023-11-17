@@ -4,7 +4,7 @@
 <mapper namespace="com.catchtable.clone.members.infrastructure.TermsDao">
     <insert id="termsStore" parameterType="com.catchtable.clone.members.domain.Terms"
             useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_terms (member_token, peristalsis, privacy_offer_agree, push_notify, sms_notify, email_notify)
+        INSERT INTO terms (member_token, peristalsis, privacy_offer_agree, push_notify, sms_notify, email_notify)
         VALUES (#{memberToken}, #{peristalsis}, #{privacyOfferAgree}, #{pushNotify}, #{smsNotify}, #{emailNotify});
     </insert>
 </mapper>

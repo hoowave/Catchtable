@@ -14,13 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ShopReserveServiceImpl implements ShopReserveService {
-    private final ShopReserveDao reserveRepository;
+    private final ShopReserveDao shopReserveDao;
 
     @Override
     @Transactional
     public ShopReserveMenuInfo menuRegister(ShopReserveMenuRegisterCommand reserveMenuRegisterCommand) {
         var initReserveMenu = reserveMenuRegisterCommand.toEntity();
-        reserveRepository.reserveMenuStore(initReserveMenu);
+        System.out.println(initReserveMenu);
+        shopReserveDao.reserveMenuStore(initReserveMenu);
         return new ShopReserveMenuInfo(initReserveMenu);
     }
 
@@ -28,7 +29,7 @@ public class ShopReserveServiceImpl implements ShopReserveService {
     @Transactional
     public ShopReservePersonnelInfo personnelRegister(ShopReservePersonnelRegisterCommand reservePersonnelRegisterCommand) {
         var initReservePersonnel = reservePersonnelRegisterCommand.toEntity();
-        reserveRepository.reservePersonnelStore(initReservePersonnel);
+        shopReserveDao.reservePersonnelStore(initReservePersonnel);
         return new ShopReservePersonnelInfo(initReservePersonnel);
     }
 }
