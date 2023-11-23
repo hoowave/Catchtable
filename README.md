@@ -15,6 +15,7 @@
 - 상점정보
 - 예약 전용 메뉴 등록
 - 예약 시간, 수용 가능 인원 등록
+- 예약내역
 
 ### 설계도
 ![image](https://github.com/hoowave/Catchtable/assets/95414258/9a860b31-301d-45e0-92a0-5d7b13561e2c)
