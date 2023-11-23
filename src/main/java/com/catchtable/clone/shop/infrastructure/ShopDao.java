@@ -13,6 +13,5 @@ public interface ShopDao {
     Long shopInformationStore(ShopInformation initShopInformation);
 
     Optional<Shop> login(Shop initShop);
-
     Optional<String> ShopIdToShopToken(String shopName);
 }

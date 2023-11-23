@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.catchtable.clone.shop.domain.reserve.infrastructure.ShopReserveDao">
-    <insert id="reserveMenuStore" parameterType="com.catchtable.clone.shop.domain.reserve.domain.ShopReserveMenu"
+<mapper namespace="com.catchtable.clone.reserve.infrastructure.ReserveDao">
+    <insert id="reserveStore" parameterType="com.catchtable.clone.reserve.domain.Reserve"
             useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_shop_reserve_menu (shop_token, type, menu_name, menu_intro, menu_price, start_at, last_at)
-        VALUES (#{shopToken}, #{type}, #{reserveMenu}, #{reserveMenuIntro}, #{reserveMenuPrice}, #{startAt}, #{lastAt});
+        INSERT INTO reserve (member_token, shop_token, reserve_at, personnel, reserve_menu, visit, message)
+        VALUES (#{memberToken}, #{shopToken}, #{reserveAt}, #{personnel}, #{reserveMenu}, #{visit}, #{message});
     </insert>
 
-    <insert id="reservePersonnelStore"
-            parameterType="com.catchtable.clone.shop.domain.reserve.domain.ShopReservePersonnel"
-            useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tbl_shop_reserve_personnel (shop_token, reserve_at, personnel)
-        VALUES (#{shopToken}, #{reserveAt}, #{personnel});
-    </insert>
+    <select id="getAvailableReserve" resultType="Integer">
+        SELECT count(*)
+        FROM reserve
+        WHERE shop_token = #{shopToken}
+        AND member_token = #{memberToken}
+        AND reserve_at = #{reserveAt}
+    </select>
+
+    <select id="getAvailablePersonnel" resultType="Integer">
+        SELECT a.personnel-IFNULL((SELECT SUM(b.personnel)
+        FROM reserve
+        b WHERE b.shop_token = #{shopToken}
+        AND b.reserve_at = #{reserveAt}),0) as result
+        FROM shop_reserve_personnel a
+        WHERE a.shop_token = #{shopToken}
+        AND a.reserve_at = DATE_FORMAT(#{reserveAt}, '%H:%i')
+    </select>
+
+    <resultMap id="memberReserveResultMap" type="com.catchtable.clone.reserve.domain.info.MemberReserveInfo">
+        <result column="shop_name" property="shopName"/>
+        <result column="reserve_at" property="reserveAt"/>
+        <result column="menu_name" property="reserveMenu"/>
+        <result column="menu_price" property="reserveMenuPrice"/>
+    </resultMap>
+
+    <select id="memberReserveInfoList" resultType="com.catchtable.clone.reserve.domain.info.MemberReserveInfo"
+            resultMap="memberReserveResultMap">
+        SELECT
+        (SELECT name FROM shop WHERE shop_token = a.shop_token ) as shop_name,
+        a.reserve_at, a.personnel, a.visit, a.message,
+        (SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
+        (SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
+        FROM reserve a
+        WHERE member_token = #{memberToken}
+    </select>
+
+    <resultMap id="shopReserveResultMap" type="com.catchtable.clone.reserve.domain.info.ShopReserveInfo">
+        <result column="member_name" property="memberName"/>
+        <result column="reserve_at" property="reserveAt"/>
+        <result column="menu_name" property="reserveMenu"/>
+        <result column="menu_price" property="reserveMenuPrice"/>
+    </resultMap>
+
+    <select id="shopReserveInfoList" resultType="com.catchtable.clone.reserve.domain.info.ShopReserveInfo"
+            resultMap="shopReserveResultMap">
+        SELECT
+        (SELECT name FROM members WHERE member_token  = a.member_token ) as member_name,
+        a.reserve_at,
+        a.personnel,
+        a.visit,
+        a.message,
+        (SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
+        (SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
+        FROM reserve a
+        WHERE shop_token = #{shopToken}
+        ORDER BY reserve_at ASC
+    </select>
+
 </mapper>

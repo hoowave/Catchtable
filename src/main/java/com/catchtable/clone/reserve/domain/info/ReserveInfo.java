@@ -28,16 +28,4 @@ public class ReserveInfo {
         this.message = reserve.getMessage();
         this.errorCode = 0;
     }
-
-    public ReserveInfo(int errorCode) {
-        this.id = 0L;
-        this.memberToken = "";
-        this.shopToken = "";
-        this.reserveAt = null;
-        this.personnel = 0;
-        this.reserveMenu = 0L;
-        this.visit = null;
-        this.message = "";
-        this.errorCode = errorCode;
-    }
 }

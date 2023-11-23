@@ -46,7 +46,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void loginCheck(HttpSession session) {
-        System.out.println(session.getAttribute("member"));
         if (session.getAttribute("member") == null) {
             throw new MemberException(ErrorCode.MEMBER_NEED_LOGIN);
         }

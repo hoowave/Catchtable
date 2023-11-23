@@ -5,7 +5,6 @@ import com.catchtable.clone.shop.domain.reserve.interfaces.dto.ShopReserveMenuRe
 import com.catchtable.clone.shop.domain.reserve.interfaces.dto.ShopReservePersonnelRegisterDto;
 import com.catchtable.clone.shop.domain.reserve.ShopReserveFacade;
 import com.catchtable.clone.common.response.CommonResponse;
-import com.catchtable.clone.common.response.ErrorCode;
 import com.catchtable.clone.shop.interfaces.dto.ShopLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

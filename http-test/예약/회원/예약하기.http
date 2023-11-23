@@ -6,8 +6,8 @@ Content-Type: application/json
 
 {
   "shopId": "testshop1",
-  "reserveAt": "2023-11-09 12:00",
-  "personnel": "2",
+  "reserveAt": "2023-11-17 17:00",
+  "personnel": "1",
   "reserveMenu": "1",
   "message": "예약요청사항입니다."
 }

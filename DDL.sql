@@ -1,4 +1,4 @@
-CREATE TABLE `tbl_members` (
+CREATE TABLE `members` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `member_token` varchar(30) NOT NULL comment '식별자',
   `name` varchar(10) NOT NULL comment '이름',
@@ -11,7 +11,7 @@ CREATE TABLE `tbl_members` (
   PRIMARY KEY (`id`)
 ) comment '회원정보 테이블' charset = utf8mb4;
 
-CREATE TABLE `tbl_terms` (
+CREATE TABLE `terms` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `member_token` varchar(30) NOT NULL comment '식별자',
   `peristalsis` varchar(1) NOT NULL comment '예약 앱에 연동하기',
@@ -22,7 +22,7 @@ CREATE TABLE `tbl_terms` (
   PRIMARY KEY (`id`)
 ) comment '약관 테이블' charset = utf8mb4;
 
-CREATE TABLE `tbl_shop` (
+CREATE TABLE `shop` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `shop_token` varchar(30) NOT NULL comment '식별자',
   `shop_id` varchar(20) NOT NULL comment '사장님 아이디',
@@ -34,7 +34,7 @@ CREATE TABLE `tbl_shop` (
   PRIMARY KEY (`id`)
 ) comment '가게정보 테이블' charset = utf8mb4;
 
-CREATE TABLE `tbl_shop_information` (
+CREATE TABLE `shop_information` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `shop_token` varchar(30) NOT NULL comment '식별자',
   `phone` varchar(15) comment'가게 전화번호',
@@ -46,7 +46,7 @@ CREATE TABLE `tbl_shop_information` (
   PRIMARY KEY (`id`)
 ) comment '가게 상세정보 테이블' charset = utf8mb4;
 
-CREATE TABLE `tbl_shop_reserve_menu` (
+CREATE TABLE `shop_reserve_menu` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `shop_token` varchar(30) NOT NULL comment '식별자',
   `type` varchar(6) NOT NULL comment '메뉴구분',
@@ -58,10 +58,47 @@ CREATE TABLE `tbl_shop_reserve_menu` (
   PRIMARY KEY (`id`)
 ) comment '예약 메뉴설정 테이블' charset = utf8mb4;
 
-CREATE TABLE `tbl_shop_reserve_personnel` (
+CREATE TABLE `shop_reserve_personnel` (
   `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
   `shop_token` varchar(30) NOT NULL comment '식별자',
   `reserve_at` time NOT NULL comment '예약시간',
   `personnel` INT NOT NULL comment '예약가능인원',
   PRIMARY KEY (`id`)
 ) comment '예약시간, 인원설정 테이블' charset = utf8mb4;
+
+CREATE TABLE `reserve` (
+  `id` bigint NOT NULL AUTO_INCREMENT comment '관리번호',
+  `member_token` varchar(30) NOT NULL comment '회원 식별자',
+  `shop_token` varchar(30) NOT NULL comment '상점 식별자',
+  `reserve_at` datetime(6) NOT NULL comment '예약 일시',
+  `personnel` int NOT NULL comment '예약 인원',
+  `reserve_menu` bigint NOT NULL comment '예약 메뉴',
+  `visit` varchar(1) NOT NULL comment '방문 여부',
+  `message` varchar(300) NOT NULL comment '요청사항',
+  PRIMARY KEY (`id`)
+) comment '예약정보 테이블' charset = utf8mb4;
+
+-- 회원별 예약정보
+SELECT
+(SELECT name FROM shop WHERE shop_token = a.shop_token ) as shop_name,
+a.reserve_at,
+a.personnel,
+a.visit,
+a.message,
+(SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
+(SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
+FROM reserve a
+WHERE member_token = "mb_YrlhVBqG4LDSHPkiQ"
+
+-- 상점별 예약정보
+SELECT
+(SELECT name FROM members WHERE member_token  = a.member_token ) as member_name,
+a.reserve_at,
+a.personnel,
+a.visit,
+a.message,
+(SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
+(SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
+FROM reserve a
+WHERE shop_token = "so_mLvPgAuHJY4rdqtWa"
+ORDER BY reserve_at ASC

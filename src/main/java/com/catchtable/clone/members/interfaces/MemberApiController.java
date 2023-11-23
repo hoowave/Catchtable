@@ -5,8 +5,6 @@ import com.catchtable.clone.common.response.CommonResponse;
 import com.catchtable.clone.common.response.ErrorCode;
 import com.catchtable.clone.members.interfaces.dto.MemberLoginDto;
 import com.catchtable.clone.members.interfaces.dto.MemberRegisterDto;
-import com.catchtable.clone.reserve.interfaces.dto.ReserveDto;
-import com.catchtable.clone.reserve.interfaces.dto.ReserveInfoListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

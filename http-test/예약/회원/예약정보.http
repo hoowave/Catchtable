@@ -1,0 +1,4 @@
+### 예약정보
+
+POST http://localhost:8080/api/v1/reserve/memberReserveInfo
+Content-Type: application/json
