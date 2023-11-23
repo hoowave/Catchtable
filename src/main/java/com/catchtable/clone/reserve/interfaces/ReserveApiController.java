@@ -1,13 +1,15 @@
 package com.catchtable.clone.reserve.interfaces;
 
 import com.catchtable.clone.common.response.CommonResponse;
-import com.catchtable.clone.common.response.ErrorCode;
 import com.catchtable.clone.members.MemberFacade;
 import com.catchtable.clone.members.interfaces.dto.MemberLoginDto;
 import com.catchtable.clone.reserve.ReserveFacade;
+import com.catchtable.clone.reserve.domain.info.ShopReserveInfo;
 import com.catchtable.clone.reserve.interfaces.dto.ReserveDto;
-import com.catchtable.clone.reserve.interfaces.dto.ReserveInfoListDto;
+import com.catchtable.clone.reserve.interfaces.dto.MemberReserveInfoListDto;
+import com.catchtable.clone.reserve.interfaces.dto.ShopReserveInfoListDto;
 import com.catchtable.clone.shop.ShopFacade;
+import com.catchtable.clone.shop.interfaces.dto.ShopLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,9 +32,9 @@ public class ReserveApiController {
     @PostMapping("/shopReserveInfo")
     public CommonResponse shopReserveInfo(HttpSession session) {
         shopFacade.loginCheck(session);
-        var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("shop");
-        var reserveInfoList = reserveFacade.reserveInfo(memberInfo.getMemberToken());
-        var response = new ReserveInfoListDto.response(reserveInfoList);
+        var shopInfo = (ShopLoginDto.LoginResponse) session.getAttribute("shop");
+        var reserveInfoList = reserveFacade.shopReserveInfoList(shopInfo.getShopToken());
+        var response = new ShopReserveInfoListDto.response(reserveInfoList);
         return CommonResponse.success(response);
     }
 
@@ -41,8 +43,8 @@ public class ReserveApiController {
     public CommonResponse memberReserveInfo(HttpSession session) {
         memberFacade.loginCheck(session);
         var memberInfo = (MemberLoginDto.LoginResponse) session.getAttribute("member");
-        var reserveInfoList = reserveFacade.reserveInfo(memberInfo.getMemberToken());
-        var response = new ReserveInfoListDto.response(reserveInfoList);
+        var reserveInfoList = reserveFacade.memberReserveInfoList(memberInfo.getMemberToken());
+        var response = new MemberReserveInfoListDto.response(reserveInfoList);
         return CommonResponse.success(response);
     }
 

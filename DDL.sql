@@ -100,12 +100,5 @@ a.message,
 (SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
 (SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
 FROM reserve a
-WHERE shop_token = "so_IPrs5dVgRCJYaMvpW"
-ORDER BY reserve_at ASC
-
-SELECT (SELECT name FROM members WHERE member_token = a.member_token) as name,
-reserve_at, personnel,
-(SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
-visit, message
-FROM reserve a
 WHERE shop_token = "so_mLvPgAuHJY4rdqtWa"
+ORDER BY reserve_at ASC

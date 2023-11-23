@@ -4,6 +4,7 @@ import com.catchtable.clone.common.response.ErrorCode;
 import com.catchtable.clone.reserve.domain.command.ReserveCommand;
 import com.catchtable.clone.reserve.domain.info.MemberReserveInfo;
 import com.catchtable.clone.reserve.domain.info.ReserveInfo;
+import com.catchtable.clone.reserve.domain.info.ShopReserveInfo;
 import com.catchtable.clone.reserve.infrastructure.ReserveDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +20,15 @@ public class ReserveServiceImpl implements ReserveService {
     private final ReserveDao reserveDao;
 
     @Override
-    public List<MemberReserveInfo> reserveInfoList(String memberToken) {
-        List<MemberReserveInfo> reserveInfolist = reserveDao.reserveInfoList(memberToken);
-        return reserveInfolist;
+    public List<MemberReserveInfo> memberReserveInfoList(String memberToken) {
+        List<MemberReserveInfo> reserveInfoList = reserveDao.memberReserveInfoList(memberToken);
+        return reserveInfoList;
+    }
+
+    @Override
+    public List<ShopReserveInfo> shopReserveInfoList(String shopToken) {
+        List<ShopReserveInfo> reserveInfoList = reserveDao.shopReserveInfoList(shopToken);
+        return reserveInfoList;
     }
 
     @Override

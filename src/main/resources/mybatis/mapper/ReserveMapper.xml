@@ -33,7 +33,7 @@
         <result column="menu_price" property="reserveMenuPrice"/>
     </resultMap>
 
-    <select id="reserveInfoList" resultType="com.catchtable.clone.reserve.domain.info.MemberReserveInfo"
+    <select id="memberReserveInfoList" resultType="com.catchtable.clone.reserve.domain.info.MemberReserveInfo"
             resultMap="memberReserveResultMap">
         SELECT
         (SELECT name FROM shop WHERE shop_token = a.shop_token ) as shop_name,
@@ -42,6 +42,28 @@
         (SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
         FROM reserve a
         WHERE member_token = #{memberToken}
+    </select>
+
+    <resultMap id="shopReserveResultMap" type="com.catchtable.clone.reserve.domain.info.ShopReserveInfo">
+        <result column="member_name" property="memberName"/>
+        <result column="reserve_at" property="reserveAt"/>
+        <result column="menu_name" property="reserveMenu"/>
+        <result column="menu_price" property="reserveMenuPrice"/>
+    </resultMap>
+
+    <select id="shopReserveInfoList" resultType="com.catchtable.clone.reserve.domain.info.ShopReserveInfo"
+            resultMap="shopReserveResultMap">
+        SELECT
+        (SELECT name FROM members WHERE member_token  = a.member_token ) as member_name,
+        a.reserve_at,
+        a.personnel,
+        a.visit,
+        a.message,
+        (SELECT menu_name FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_name,
+        (SELECT (menu_price*a.personnel) FROM shop_reserve_menu WHERE shop_token = a.shop_token) as menu_price
+        FROM reserve a
+        WHERE shop_token = #{shopToken}
+        ORDER BY reserve_at ASC
     </select>
 
 </mapper>
